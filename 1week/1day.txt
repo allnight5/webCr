@@ -1,0 +1,64 @@
+1주차
+eStore Free Checkout Confirmation
+Order Number: R12154098
+1 첫 번째
+웹의 의미 서버에 있는 데이터를 받아와서 띄어주는 것으로 우리가 바꿔도 본서버의 내용이 바뀌지 않으니 그대로이다
+ 
+    <style>
+        .mytitle{
+            color : red;
+        } 
+    </style>
+
+CRUD 생성 조회 업데이트 딜리트라고 한다
+create retrive update Delete
+<!-- 구역을 나누는 태그들 -->
+<div>나는 구역을 나누죠</div>
+<p>나는 문단이에요</p>
+<ul>
+<li> bullet point!1 </li>
+<li> bullet point!2 </li>
+</ul>
+
+<!-- 구역 내 콘텐츠 태그들 -->
+
+<!-- class를 줘서 특정 값이 되게하여 style효과를 주어 색상이나 위치등을 바꾸어 줄 수 있다. -->
+<h1 class = “mytitle”>h1은 제목을 나타내는 태그입니다. 페이지마다 하나씩 꼭 써주는 게 좋아요. 그래야 구글 검색이 잘 되거든요.</h1>
+<h2>h2는 소제목입니다.</h2>
+<h3>h3~h6도 각자의 역할이 있죠. 비중은 작지만..</h3>
+<hr>
+span 태그입니다: 특정 <span style="color:red">글자</span>를 꾸밀 때 써요
+<hr>
+a 태그입니다: <a href="http://naver.com/"> 하이퍼링크 </a>
+<hr>
+img 태그입니다: <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
+<hr>
+input 태그입니다: <input type="text" /><!--글자 넣는 창 텍스트 창, 칸 -->
+
+<hr>
+button 태그입니다: <button> 버튼입니다</button>
+<hr>
+textarea 태그입니다: <textarea>나는 무엇일까요?</textarea><!--글자 넣는 창 텍스트 창, 칸 -->
+</body>
+6번째
+	<!--width에 =을 하니까 적용이 안되어서 해매였다 -->
+	<!--margin : auto 도 =로 잘못써서 적용이 안되었다.  미세한 차이가 크다는 것을 다시 느꼈다-->
+        .mytitle{
+         width : 300px;
+         height : 200px;
+
+         color : white;
+
+         text-align: center;
+
+         background-image : url("https://www.ancient-origins.net/sites/default/files/field/image/Agesilaus-II-cover.jpg");
+         background-size : cover;
+         background-position : center;
+         border-radius : 10px;
+         padding-top : 40px;
+        }
+
+        .wrap {
+            width: 300px;
+            margin : auto;
+        }
