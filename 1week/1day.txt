@@ -41,6 +41,8 @@ button 태그입니다: <button> 버튼입니다</button>
 textarea 태그입니다: <textarea>나는 무엇일까요?</textarea><!--글자 넣는 창 텍스트 창, 칸 -->
 </body>
 6번째
+
+	<!--witdh는 넓이 height는 높이를 정하게 해준다 --> 
 	<!--width에 =을 하니까 적용이 안되어서 해매였다 -->
 	<!--margin : auto 도 =로 잘못써서 적용이 안되었다.  미세한 차이가 크다는 것을 다시 느꼈다-->
         .mytitle{
@@ -50,11 +52,16 @@ textarea 태그입니다: <textarea>나는 무엇일까요?</textarea><!--글자
          color : white;
 
          text-align: center;
-
+	
+	
+	<!--아래 세줄을 같이 쓰는데 이유가 링크에 이미지를 넣고 크기를 자신이 정한곳에 넣고 위치를 지정하는것까지-->
+	<!--원해서 넣기때문에 대부분이 3줄을 쓴다고한다 확실히 이미지크기를 매번 설정하기 귀찮고 위치도 보내고 싶은곳에 보내고 싶으니 연관성이 높은 것 같다--> 
          background-image : url("https://www.ancient-origins.net/sites/default/files/field/image/Agesilaus-II-cover.jpg");
          background-size : cover;
          background-position : center;
+	<!-- --> 
          border-radius : 10px;
+	 
          padding-top : 40px;
         }
 
