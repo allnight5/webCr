@@ -14,4 +14,4 @@
 
 jQuery와 ajax 기초 와 includes
 
-[jQuery](1week/2day-2.txt)
+[jQuery](1week/2day-2)
