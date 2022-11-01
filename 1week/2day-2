@@ -1,0 +1,56 @@
+
+jQuery란?
+HTML의 요소들을 조작하는 편리한 javascript를 미리 작성해둔 것으로 라이브러리라고 한다.
+사용하기 위해서 head란 안에 아래와 같은 소스코드 한줄을 추가해주면 된다.
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+우리는 스타일을 줄 때 class사용했으나
+jQuery 의 경우 id를 사용하게됩니다.
+
+보여주는 기능과 숨기는 기능이다
+
+function open_box(){
+$('#post-box').show()
+}
+function close_box(){
+$('#post-box').hide()
+}
+
+아래와 같이 스타일란에 있는 것중에 display:none; 적용시 처음에는 나오지 않으나 
+상위 보여주는 기능을 추가하고 one-click효과를 준다면 누를 때 등장하게 된다
+.mypost {
+max-width : 500px;
+width:95%;
+margin : 10px auto 0px auto;
+box-shadow : 0px 0px 3px 0px gray;
+padding : 20px;
+
+display: none;
+}
+입력값을 가져와주는 Jquery
+        let 함수이름 = $('#id이름').val();
+예시
+        let value = $('#input-q1').val();
+includes는 비교할 함수에 문자열내용이 포함되어 있는지 확인하는 것으로 이것을 활용하여 if문을 만들 수 있다.
+함수이름.includes(“문자열내용”) == true
+
+
+if (txt.includes('@') == true) {
+
+연속 분할하기
+txt.split('@')[1].split('.')[0]
+이미지 바꾸기
+$(“#img-rtan“).attr(“src”, 이미지url);
+예시
+       let url = response['url'] 
+       $("#img-rtan").attr('src',url)
+
+텍스트 바꾸기
+$(“id이름”).text(“바꾸고 싶은 텍스트”);
+예시
+       let msg = response['msg']
+       $("#text-rtan").text(msg)
+
+
+시작과 동시에 실행되는 ajax 형태
+$(document).ready(function(){
+	$.ajax({
