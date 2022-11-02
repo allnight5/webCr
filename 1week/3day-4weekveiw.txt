@@ -1,0 +1,74 @@
+
+내컴퓨터에서 서버를 만들고 돌린다음 접속하는건 로컬 개발환경이다
+자기 컴퓨터 하나로 개발과 겁속을 하는걸 로컬 개발환경이라한다.
+
+Flask프레임워크 : 서버를 구동시키는 편한코드모음을 프레임워크라고 부른다
+
+api란 은행의 창구다
+은행의 창구에 갈때에도 방법이있다
+
+get -> 데이터를 조회하거나 전달할 때
+post -> 생성 변경 삭제를 요청할 때
+
+프론트엔드와 백엔드의 차이
+프론트엔트 html 쪽
+백엔드 flask 서버쪽
+
+
+get형태
+
+서버쪽(백엔드) .py파일
+@app.route('/test', methods=['GET'])
+def test_get():
+    title_receive = request.args.get('title_give')
+    print(title_receive)
+    return jsonify({'result':'success', 'msg': '이 요청은 GET!'})
+
+프론트앤드쪽 .html파일
+        function hey(){
+            $.ajax({
+                type : "GET",
+                url : "/test?title_give=본날은간다",
+                data:{},
+                success : function(response){
+                    console.log(response)
+                }
+            })
+        }
+
+#윈도우 재시작
+window.locathion.reload()
+
+데이터 DB로 보내기 서버쪽 post
+@app.route("/mars", methods=["POST"])
+def web_mars_post():
+    #받을 값(함수)을 정해서 넣는다
+    #request.form['받을함수이름']
+    name_receive = request.form['name_give']
+    address_receive = request.form['address_give']
+    size_receive = request.form['size_give']
+    doc = {
+        'name':name_receive,
+        'address':address_receive,
+        'size':size_receive
+    }
+    db.mars.insert_one(doc)
+    return jsonify({'msg': '주문 완료!'})
+
+
+데이터 DB로 보내기 html쪽 post
+
+        function save_order() {
+            let name = $('#name').val()
+            let address = $('#address').val()
+            let size = $('#size').val()
+            $.ajax({
+                type: 'POST',
+                url: '/mars',
+		<!--정해진 값(함수)을 서버로 name_give 보내준다-->
+                data: {name_give:name, address_give:address, size_give:size},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.locathion.reload()
+                }
+            });
