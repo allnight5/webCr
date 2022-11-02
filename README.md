@@ -19,3 +19,7 @@ jQuery와 ajax 기초 와 includes
 DB연결과 웹스크래핑(크롤링)
 
 [크롤링](1week/3day.txt)
+
+서버와 DB를 동안 로컬개발
+
+[로컬개발](1week/3day-4weekveiw.txt)
