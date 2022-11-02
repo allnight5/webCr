@@ -1,0 +1,131 @@
+#배열안에 있는 문자열이나 문자 숫자중 배가 있는 숫자를 세서 배의 개수만큼 출력해주는
+#소스코드이다
+fruits = ['사과','배','배','감','수박','귤','딸기','사과','배','수박']
+#함수 count를 0으로 초기화하며 선언해준다.
+count = 0
+#반복문
+for fruit in fruits :
+    #배열안에 배가있는지 검사하고 있다면 count에 1을 더해주는 소스코드이다
+    if fruit == ‘배’:
+        count += 1
+
+print(count)
+
+#people 딕셔너리 안에 age가 20초과인 name들을 출력하는 소스코드이다
+people = [{'name': 'bob', 'age': 20},
+          {'name': 'carry', 'age': 38},
+          {'name': 'john', 'age': 7},
+          {'name': 'smith', 'age': 17},
+          {'name': 'ben', 'age': 27}]
+
+for person in people:
+    #person안에 age가20초과인 name의 내용을 출력한다
+    if person['age'] > 20:
+        print(person['name'])
+
+개인으로는 B,C,D,E를 쓰고있으나 회사에서는 B-2라고 쓰자고한다
+그러면 집에서는 B로하고 회사에서는 B-2로 써야하는 번거로움이 있으나 
+프로젝트별로 라이브러리를 모아둘수 있게 해준 것이 가상환경으로 간단하게 
+라이브러리를 모아둔 것이라고 하면된다. verv폴더가 이것이 모여있는 것으로 우리가 만든것이아니다
+
+크롤링이 해야하는 것은 두가지가 있는데
+그중 첫 번째 요청해서 하려는 html부분을 가져오는 것
+두 번째는 제목을 찾는 것으로 찾기 힘드니 beautifulsoup이라는 라이브러리로 할 것이다
+
+beautifulsoup으로 크롤링하는 법을 배웠다
+
+기본적으로 사용하는 기본 5줄이다
+import requests
+from bs4 import BeautifulSoup
+
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+data
+requests.get(‘가져올주소’,headers=headers)
+#아래 예시
+#requests.get('https://movie.naver.com/movie/sdb/rank/rmovie.naver?sel=pnt&date=20210829',headers=headers)
+#'html.parser'을 다른내용으로 바꾸면 다른형태로 가져봐진다
+soup = BeautifulSoup(data.text, 'html.parser')
+
+#하나만 선택해서 가져올때는 select_one을 사용한다
+t#itle = soup.select_one(‘검사에잇는 태크를 copy select해서 가져오는부분’)
+
+#여러개 select할때는 아래와 같이 _one을 빼고 한다.
+#리스트 형태로 가져오게 된다
+movies = soup.select(‘#old_content >table >tbody >tr’)
+
+formovie in movies :
+    #select에서 여러개를 가져오면 select_one를 사용하여 하나씩 넣는다.
+    a = moive.select_one(‘td.title >div > a’)
+    #None값이 아닌것만 출력한다. 다른말로 비어있는 내용은 출력하지 않는다.
+    if a is not None:
+        print(a)
+        #a태크에 내용만을 가져오고 싶다면 .text를 붙여준다
+        #print(a.text)
+
+크롤링하기
+import requests
+from bs4 import BeautifulSoup
+
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+data = requests.get('https://movie.naver.com/movie/sdb/rank/rmovie.naver?sel=pnt&date=20210829',headers=headers)
+
+soup = BeautifulSoup(data.text, 'html.parser')
+#순위 제목 평점
+
+movies = soup.select('#old_content > table > tbody > tr')
+
+for movie in movies:
+    #a = soup.select_one으로 쓴다면 None을 불러와서
+    #rank와 star가 없는 값이기 때문에 오류가 뜨게된다. 주의!
+    a = movie.select_one('td.title > div > a')
+    if a is not None:
+        title = a.text
+        rank = movie.select_one('td:nth-child(1) > img')
+        star = movie.select_one('td.point')
+        print(rank['alt'], title, star.text) 
+''’
+	        ##select_one뒤에 [‘alt’]나 .text를 붙여도 같은 효과가 있다.
+        rank = movie.select_one('td:nth-child(1) > img')['alt']
+        star = movie.select_one('td.point').text
+        print(rank, title, star) 
+''’
+DB(DataBase)를 쓰는이유
+잘 뽑아쓰기 위해서(쉽게(빠르게) 뽑아쓰기 위해서)
+
+NoSql은 그때마다 쌓이기 때문에 좀더 유연하게 대처할 수 있다. 
+
+MongoDB
+# 저장 - 예시
+doc = {'name':'bobby','age':21}
+db.users.insert_one(doc)
+
+# 한 개 찾기 - 예시
+user = db.users.find_one({'name':'bobby'})
+
+# 여러개 찾기 - 예시 ( _id 값은 제외하고 출력) 
+#find({},조건은 없다 find({'name':'bobby'} 조건은 name이 booby인 것만 찾아라
+all_users = list(db.users.find({},{'_id':False}))
+
+# 바꾸기 - 예시
+db.users.update_one({'name':'bobby'},{'$set':{'age':19}})
+
+# 지우기 - 예시
+db.users.delete_one({'name':'bobby'})
+
+데이터 베이스에서 읽어오기
+movie = db.movies.find_one({'title' : '가버나움'})
+
+star = movie['star']
+
+all_movies = list(db.movies.find({'star' : star}, {'id' : False}))
+for m in all_movies:
+    print(m['title'])
+
+숙제
+#text[0:~어디까지]출력할것이다라는 것을 범위설정을할 수 있다.
+#.strip()를 사용하면 불러오는 것중 잘라내고 싶은부분이나 공백을 제거할 때 유용하다
+for music in musics :
+    rank = music.select_one('td.number').text[0:2].strip()
+    title = music.select_one('td.info > a.title.ellipsis').text.strip()
+    artist = music.select_one('td.info > a.artist.ellipsis').text
+    print(rank, title, artist)
